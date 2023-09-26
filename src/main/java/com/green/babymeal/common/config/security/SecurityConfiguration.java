@@ -1,5 +1,4 @@
 package com.green.babymeal.common.config.security;
-
 import com.green.babymeal.common.config.properties.CorsProperties;
 import com.green.babymeal.common.config.security.filter.JwtAuthenticationFilter;
 import com.green.babymeal.common.config.security.handler.*;
@@ -17,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
+import org.springframework.web.cors.CorsConfigurationSource;
 import java.util.Arrays;
 
 @Configuration

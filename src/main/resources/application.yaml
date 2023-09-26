@@ -47,9 +47,9 @@ spring:
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
  #   url: jdbc:mariadb://localhost:3306/babymeal
-    url: jdbc:mariadb://192.168.0.144:3306/team_a
-    username: root
-    password: green502
+    url: jdbc:mariadb://${DB_HOST}:${DB_PORT}/team_a
+    username: ${DB_USERNAME}
+    password: ${DB_USERPASSWORD}
   jpa:
     hibernate:
       ddl-auto: update # Entity? ??? ?? ???? ???.
@@ -119,8 +119,8 @@ cors:
 
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${DB_HOST}
+      port: ${DB_REDISPORT}
 
 # mybatis config
 mybatis:
@@ -134,7 +134,7 @@ springdoc:
 
 
 file:
-  dir: /home/download
+  dir: /app/download
 
 
 

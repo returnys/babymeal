@@ -35,7 +35,8 @@ public class SecurityConfiguration {
     //webSecurityCustomizer를 제외한 모든 것, 시큐리티를 거친다. 보안과 연관
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        return httpSecurity.authorizeHttpRequests(authz ->
+        return httpSecurity.cors(cors -> cors.coreConfigurationSource(corsConfigurationSource()))
+            .authorizeHttpRequests(authz ->
                             authz.requestMatchers(
                                             "/favicon.ico", "/js/**", "/img/**", "/css/**", "/static/**", "/", "/index.html"
                                             , "/swagger.html"
@@ -113,15 +114,15 @@ public class SecurityConfiguration {
      * Cors 설정
      * */
     @Bean
-    public UrlBasedCorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource corsConfigSource = new UrlBasedCorsConfigurationSource();
-
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.setAllowedHeaders(Arrays.asList(corsProperties.getAllowedHeaders().split(",")));
-        corsConfig.setAllowedMethods(Arrays.asList(corsProperties.getAllowedMethods().split(",")));
-        corsConfig.setAllowedOrigins(Arrays.asList(corsProperties.getAllowedOrigins().split(",")));
-        corsConfig.setAllowCredentials(true);
-        corsConfig.setMaxAge(corsConfig.getMaxAge());
+        corsConfig.setAllowedOriginPatterns(Arrays.asList("*"));
+        corsConfig.setAllowedOrigins(Arrays.asList("https://web-yummeal-iciy2almyhc6mw.sel5.cloudtype.app"));
+        corsConfig.setAllowedMethods(Arrays.asList("*"));
+        corsConfig.setAllowedHeaders(Arrays.asList("*"));
+        // corsConfig.setAllowCredentials(true);
+        // corsConfig.setMaxAge(corsConfig.getMaxAge());
 
         corsConfigSource.registerCorsConfiguration("/**", corsConfig);
         return corsConfigSource;
